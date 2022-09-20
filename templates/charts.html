@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../static/css/models.css" />
+    <link rel="stylesheet" href="../static/css/login.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .blk {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .chart-blk {
+        width: auto;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+        align-items: center;
+        border-radius: 10px;
+        padding: 15px;
+      }
+
+      .btn {
+        border-radius: 5px;
+        margin-top: 0px;
+        margin-left: 35%;
+        width: 250px;
+        padding: 12px 10px;
+        background-color: #1a1a1a;
+        color: rgb(201, 255, 160);
+        text-transform: uppercase;
+        border: 2px solid yellow;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navigation">
+      <header>
+        <div class="header">
+          <div>
+            <a href="/dashboard">
+              <img src="/static/logo.png" alt="logo" height="100" />
+            </a>
+          </div>
+          <div class="icon">
+            <a href="/dashboard">
+              <img src="/static/home.png" alt="logo" height="50" />
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <div class="">
+      <a href="#"></a>
+    </div>
+    <div class="blk">
+      <div class="chart-blk">
+        <div>
+          <h3>% of words distribution</h3>
+        </div>
+        <div class="chart">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-blk">
+        <div>
+          <h3>distribution</h3>
+        </div>
+        <div class="chart">
+          <canvas id="radarChart"></canvas>
+        </div>
+      </div>
+
+      <div style="width: 500px">
+        <!-- // empty div -->
+      </div>
+    </div>
+
+    <div>
+      <button
+        class="btn"
+        onclick="window.location.href='/static/file/results2.csv';"
+      >
+        Download
+      </button>
+    </div>
+
+    <script>
+      const bar = document.getElementById('barChart').getContext('2d');
+      const radar = document.getElementById('radarChart').getContext('2d')
+      const barChart = new Chart(bar, {
+        type: 'bar',
+        data: {
+          labels: [
+            {% for item in x %}
+              "{{item}}",
+            {% endfor %}
+          ],
+          options: {
+            scales: {
+              y: {
+                end: 100
+              }
+            }
+          },
+          datasets: [{
+            label: 'Percentage of Votes',
+            data: [
+              {% for item in y_perc %}
+                "{{ item }}",
+              {% endfor %}
+            ],
+            backgroundColor: [
+              //'rgba(255, 99, 132, 0.2)',
+              //'rgba(54, 162, 235, 0.2)',
+              //'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.8)',
+              'rgba(153, 102, 255, 0.8)',
+              'rgba(255, 159, 64, 0.8)'
+            ],
+            borderWidth: 1
+          }]
+        },
+      });
+      const radarChart = new Chart(radar, {
+        type: 'line',
+        data: {
+          labels: [
+            {% for item in x %}
+              "{{ item }}",
+            {% endfor %}
+          ],
+          datasets: [{
+            label: '# of Votes',
+            data: [
+              {% for item in y %}
+                "{{ item }}",
+              {% endfor %}
+            ],
+            backgroundColor: [
+              //'rgba(255, 99, 132, 0.2)',
+              //'rgba(54, 162, 235, 0.2)',
+              //'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.8)',
+              'rgba(153, 102, 255, 0.8)',
+              'rgba(255, 159, 64, 0.8)'
+            ],
+            borderWidth: 2
+          }]
+        }
+      });
+      //const btn = document.getElementById
+    </script>
+  </body>
+</html>

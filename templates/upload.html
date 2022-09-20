@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Users</title>
+    <link rel="stylesheet" href="/static/login.css" />
+    <!-- <style>
+        div#content {
+            display: none;
+        }
+
+        /* div#loading {
+            width: 35px;
+            height: 35px;
+            display: none;
+            background: url(/static/loading.gif) no-repeat;
+            cursor: wait;
+        } */
+    </style> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script type="text/javascript">// <![CDATA[
+        function loading() {
+            $("#loading").show();
+            $("#content").hide();
+        }
+    // ]]></script> -->
+
+</head>
+
+
+<body>
+    <header>
+        <div class="header">
+          <div>
+            <img src="/static/logo.png" alt="logo" height="100" />
+          </div>
+          <div class="icon">
+            <a href="/"> <img src="/static/home.png" alt="logo" height="50" /> </a>
+          </div>
+        </div>
+    </header>
+    <section class="login">
+        <form action="/datafile" class="form-bg" method="POST" enctype="multipart/form-data">
+            <!-- <div style="padding: 5px;"> -->
+            <input class="custom-input" type="file" name="csvfile" id="csvfile">
+            <!-- </div> -->
+            <!-- <div class="mb">
+                <label for="">Please Enter Model name: </label>
+            </div> -->
+            <!-- <div>
+                <input type="text" name="modelname" placeholder="Enter model name" class="input">
+            </div> -->
+            <!-- <div>
+                <input type="submit" name="anything_submit" value="Submit" onclick="loading();">
+            </div> -->
+            <!-- <div style="padding: 5px;"> -->
+                <button type="submit" class="btn" onclick="$('#loading').show();">
+                    Upload File
+                </button>
+            <!-- </div> -->
+        </form>
+        <div id="loading" style="display:none;"><img src="/static/loading.gif" alt="" />In Progress Please Wait...</div>
+    </section>
+    <!-- <div id="loading"></div> -->
+
+
+</body>
+
+
+</html>
